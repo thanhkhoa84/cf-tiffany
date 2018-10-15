@@ -26,7 +26,7 @@ html {
 
 body {
   font-family: 'Futura', sans-serif;
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.2;
   margin: 0;
   padding: 0;
@@ -39,6 +39,9 @@ body {
   max-width: 1140px;
   margin: 0 auto;
   padding: 0 10px;
+  @include screen(small) {
+    padding: 0 20px;
+  }
 }
 
 .visually-hidden {
@@ -58,33 +61,33 @@ body {
   color: #67370c;
   display: inline-block;
   font-size: 12px;
-  padding: 0 50px;
+  padding: 0 15px;
   height: 30px;
   line-height: 30px;
   text-align: center;
   text-decoration: none;
   position: relative;
-  @include screen(small) {
-    font-size: 20px;
-    height: 50px;
-    line-height: 50px;
-  }
   &:before {
-    background: #e5c164;
+    background: url(../images/bg-btn.jpg) no-repeat center;
     content: '';
     display: block;
     position: absolute;
     top: 5px;
-    left: 5px;
-    bottom: 5px;
     right: 5px;
+    bottom: 5px;
+    left: 5px;
+  }
+  @include screen(small) {
+    font-size: 20px;
+    padding: 0 50px;
+    height: 50px;
+    line-height: 50px;
   }
   span {
     position: relative;
     z-index: 5;
   }
 }
-
 
 .logo {
   background: url(../images/logo.png) no-repeat;
@@ -105,6 +108,37 @@ body {
   }
 }
 
+.has-overlay {
+  &:after {
+    background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 65%, rgba(0, 0, 0, 0.72) 78%, rgba(0, 0, 0, 0.72) 100%);
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 65%, rgba(0, 0, 0, 0.72) 78%, rgba(0, 0, 0, 0.72) 100%);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 65%, rgba(0, 0, 0, 0.72) 78%, rgba(0, 0, 0, 0.72) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#b8000000', GradientType=0);
+    content: '';
+    display: block;
+    height: 150px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+.kv {
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  right: 0;
+
+  img {
+    max-width: 98%;
+
+    @include screen(small) {
+      max-width: 100%;
+    }
+  }
+}
+
 h1 {
   font-size: 19px;
   @include screen(small) {
@@ -113,25 +147,20 @@ h1 {
 }
 
 main {
-  .kv {
-    position: absolute;
-    bottom: 0px;
-    left: 0;
-    right: 0;
-    img {
-      max-width: 98%;
-      @include screen(small) {
-        max-width: 100%;
-      }
-    }
-  }
   .intro {
     color: #c7881c;
     text-align: center;
+    p {
+      max-width: 55%;
+      margin: 0 auto;
+    }
     @include screen(small) {
       float: right;
       margin-top: 80px;
       max-width: 430px;
+      p {
+        max-width: 100%;
+      }
     }
     .btn {
       clear: both;
@@ -142,7 +171,9 @@ main {
       bottom: 30px;
       left: 0;
       right: 0;
+      color: #f8e7ad;
       @include screen(small) {
+        color: #c7881c;
         position: static;
       }
     }
