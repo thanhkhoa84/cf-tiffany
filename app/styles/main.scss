@@ -1,0 +1,38 @@
+// bower:scss
+// endbower
+
+html {
+  background: url(../images/bg.jpg) center no-repeat;
+  background-size: cover;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px);
+  /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0 !important;
+  border: 0 !important;
+  height: 1px !important;
+  width: 1px !important;
+  overflow: hidden;
+}
+
+
+.logo {
+  background: url(../images/logo.png) no-repeat;
+  display: block;
+  margin: 0 auto;
+  width: 182px;
+  height: 131px;
+  h1 {
+    margin: 40px 0 0;
+  }
+}
