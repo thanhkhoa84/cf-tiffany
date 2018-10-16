@@ -113,7 +113,7 @@ body {
     bottom: 5px;
     left: 5px;
   }
-  @include screen(small) {
+  @include screen(large) {
     font-size: 20px;
     height: 50px;
     line-height: 50px;
@@ -129,7 +129,7 @@ body {
 }
 
 .max-width-55 {
-  @include screen(small) {
+  @include screen(large) {
     max-width: 55%;
     margin: 0 auto;
   }
@@ -142,13 +142,13 @@ body {
   margin: 0 auto;
   width: 109px;
   height: 79px;
-  @include screen(small) {
+  @include screen(large) {
     width: 182px;
     height: 131px;
   }
   h1 {
     margin: 20px 0 0;
-    @include screen(small) {
+    @include screen(large) {
       margin-top: 40px;
     }
   }
@@ -167,26 +167,123 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    @include screen(medium) {
+    @include screen(large) {
       height: 250px;
     }
   }
 }
 
 .kv {
+  text-align: center;
   position: absolute;
   bottom: 0px;
   left: 0;
   right: 0;
-  @include screen(medium) {
+  overflow: hidden;
+  @include screen(large) {
+    text-align: left;
     left: calc((100vw - 1140px)/2);
   }
   img {
     max-width: 98%;
 
-    @include screen(medium) {
-      max-width: 100%;
+    @include screen(large) {
+      height: 80vh;
+      max-width: none;
     }
+  }
+
+  /* ----------- iPhone 5, 5S, 5C and 5SE ----------- */
+  /* Portrait */
+  @media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+    img {
+      max-width: none;
+      height: 50vh;
+    }
+  }
+
+  /* ----------- iPhone 6, 6S, 7 and 8 ----------- */
+  /* Portrait */
+  @media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) { 
+    img {
+      max-width: none;
+      height: 60vh;
+    }
+  }
+
+  // ipx
+  @media only screen 
+    and (min-device-width: 375px) 
+    and (max-device-width: 812px) 
+    and (-webkit-min-device-pixel-ratio: 3) { 
+      img {
+        max-width: none;
+        height: 60vh;
+      }
+  }
+
+  /* ----------- iPad 1, 2, Mini and Air ----------- */
+
+  /* Portrait */
+  @media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: portrait) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+    img {
+      max-width: none;
+      height: 50vh;
+    }
+  }
+
+  /* Landscape */
+  @media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: landscape) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+    img {
+      max-width: none;
+      height: 50vh;
+    }
+  }
+
+  /* ----------- iPad 3, 4 and Pro 9.7" ----------- */
+  /* Portrait and Landscape */
+  @media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+
+  }
+
+  /* Portrait */
+  @media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: portrait) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+    img {
+      max-width: none;
+      height: 60vh;
+    }
+  }
+
+  /* Landscape */
+  @media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: landscape) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+
   }
 }
 
@@ -228,7 +325,7 @@ main {
       max-width: 65%;
       margin: 0 auto;
     }
-    @include screen(small) {
+    @include screen(large) {
       float: right;
       margin-top: 80px;
       max-width: 430px;
