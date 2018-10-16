@@ -6,7 +6,7 @@
 @import "./base/quantity-queries";
 @import "./base/variables";
 
-@import url('https://fonts.googleapis.com/css?family=Cormorant+Garamond:600&subset=latin-ext,vietnamese');
+@import url('https://fonts.googleapis.com/css?family=Cormorant+Garamond:500&subset=latin-ext,vietnamese');
 
 @font-face {
   font-family: 'Futura';
@@ -149,6 +149,7 @@ body {
     height: 131px;
   }
   h1 {
+    font-family: 'Cormorant Unicase', sans-serif;
     margin: 20px 0 0;
     @include screen(large) {
       margin-top: 40px;
