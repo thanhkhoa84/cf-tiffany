@@ -1,4 +1,8 @@
 $(document).ready(function() {
+  $('#btn-start').on('click', function(e) {
+    e.preventDefault();
+  });
+
   $('#fbLogin').on('click', function(e) {
     e.preventDefault();
     FB.getLoginStatus(function (response) {

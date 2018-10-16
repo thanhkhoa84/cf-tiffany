@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:image" content="">
+    <title>Fashion Show</title>
+
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- build:css styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+
+  </head>
+  <body>
+    <!--[if IE]>
+      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <header>
+      <div class="container">
+        <a href="/" class="logo"><h1><span class="visually-hidden">Comfort - Nước hoa thiên nhiên cho thời trang đẳng cấp</span></h1></a>
+      </div>
+    </header>
+    <main>
+      <div class="container has-overlay"></div>
+      <div class="container text-center">
+        <div class="step step-1">
+          <h2>DẤU ẤN THỜI TRANG NÀO PHÙ HỢP<br/>VỚI BẠN NHẤT?</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et.</p>
+          <ul class="options-list">
+            <li>
+              <a href="javascript:void(0);"><img src="./images/team-1.png" alt=""></a>
+              <span>#Cá Tính đậm chất</span>
+              <span>#ChâuBùi</span>
+            </li>
+            <li>
+              <a href="javascript:void(0);"><img src="./images/team-2.png" alt=""></a>
+              <span>#Sành Điệu đúng chuẩn</span>
+              <span>#QuỳnhAnhShyn</span>
+            </li>
+            <li>
+              <a href="javascript:void(0);"><img src="./images/team-3.png" alt=""></a>
+              <span>#Sang Chảnh đẳng cấp</span>
+              <span>#ThanhHằng</span>
+            </li>
+            <li>
+              <a href="javascript:void(0);"><img src="./images/team-4.png" alt=""></a>
+              <span>#Gợi Cảm khoe dáng</span>
+              <span>#ChiPu</span>
+            </li>
+          </ul>
+            <p><a href="javascript:void(0);" class="btn"><span>KẾ TIẾP</span></a></p>
+        </div>
+        <div class="step step-2">
+          <h2>HƯƠNG NƯỚC HOA TƯƠI MỚI NÀO<br/>BẠN ĐANG MUỐN THỬ?</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et.</p>
+          <ul class="options-list">
+            <li>
+              <a href="javascript:void(0);"><img src="./images/scent-1.png" alt=""></a>
+              <span>#Quý Phái với</span>
+              <span>#Comfort Sophia</span>
+            </li>
+            <li>
+              <a href="javascript:void(0);"><img src="./images/scent-2.png" alt=""></a>
+              <span>#Sành Điệu đúng chuẩn</span>
+              <span>#QuỳnhAnhShyn</span>
+            </li>
+            <li>
+              <a href="javascript:void(0);"><img src="./images/scent-3.png" alt=""></a>
+              <span>#Sang Chảnh đẳng cấp</span>
+              <span>#ThanhHằng</span>
+            </li>
+            <li>
+              <a href="javascript:void(0);"><img src="./images/scent-4.png" alt=""></a>
+              <span>#Gợi Cảm khoe dáng</span>
+              <span>#ChiPu</span>
+            </li>
+          </ul>
+            <p class="buttons">
+              Hãy đăng nhập Facebook để xem kết quả<br/>
+              <a href="javascript:void(0);" class="btn"><span>XEM KẾT QUẢ</span></a>
+            </p>
+        </div>
+        <div class="step step-3">
+            <h2>CHÀO NÀNG, CÔ GÁI <span id="result-scent">LILLIE</span></h2>
+            <p id="result-text">Thêm chút kiêu sa nhưng không mất đi nét riêng cá tính, hãy thử  kết hợp trang phục wool silk được ướp hương nước hoa Comfort Rose bạn nhé!</p>
+            <figure>
+              <img src="" alt="">
+            </figure>
+              <p class="buttons">
+                  Khoe với bạn bè ngay để nhận được Bộ sưu tập Comfort HNHTN 4 mùi hương  tại sự kiện…. & cơ hội nhận được thiết kế dành riêng cho bạn từ Chung Thanh Phong<br/>
+                <a href="javascript:void(0);" class="btn"><span>CHIA SẺ</span></a>
+                <a href="javascript:void(0);" class="btn"><span>THỬ LẠI</span></a>
+              </p>
+          </div>
+      </div>
+      <div class="petal"></div>
+    </main>
+
+
+    <script>
+      window.fbAsyncInit = function () {
+        FB.init({
+          appId: '271192156856247',
+          cookie: true,
+          xfbml: true,
+          version: 'v3.1'
+        });
+
+        FB.AppEvents.logPageView();
+
+      };
+
+      (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) { return; }
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    <!-- build:js scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js scripts/main.js -->
+    <script src="scripts/main.js"></script>
+    <!-- endbuild -->
+  </body>
+</html>

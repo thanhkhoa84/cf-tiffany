@@ -19,12 +19,12 @@
 html {
   background: url(../images/bg.jpg) center no-repeat;
   background-size: cover;
-  overflow: hidden;
   min-width: 100%;
   min-height: 100%;
 }
 
 body {
+  color: #c7881c;
   font-family: 'Futura', sans-serif;
   font-size: 12px;
   line-height: 1.2;
@@ -39,6 +39,7 @@ body {
   max-width: 1140px;
   margin: 0 auto;
   padding: 0 10px;
+  position: relative;
   @include screen(small) {
     padding: 0 20px;
   }
@@ -56,6 +57,20 @@ body {
   overflow: hidden;
 }
 
+.buttons {
+  color: #f8e7ad;
+  .btn {
+    margin-top: 0.5em;
+    & + .btn {
+      margin-left: 50px;
+    }
+  }
+  @include screen(small) {
+    color: #c7881c;
+    position: static;
+  }
+}
+
 .btn {
   border: 1px solid #ced9a4;
   color: #67370c;
@@ -67,6 +82,7 @@ body {
   text-align: center;
   text-decoration: none;
   position: relative;
+  min-width: 200px;
   &:before {
     background: url(../images/bg-btn.jpg) no-repeat center;
     content: '';
@@ -79,9 +95,9 @@ body {
   }
   @include screen(small) {
     font-size: 20px;
-    padding: 0 50px;
     height: 50px;
     line-height: 50px;
+    min-width: 300px;
   }
   span {
     position: relative;
@@ -117,10 +133,13 @@ body {
     content: '';
     display: block;
     height: 150px;
-    position: absolute;
+    position: fixed;
     left: 0;
     right: 0;
     bottom: 0;
+    @include screen(medium) {
+      height: 250px;
+    }
   }
 }
 
@@ -133,10 +152,14 @@ body {
   img {
     max-width: 98%;
 
-    @include screen(small) {
+    @include screen(medium) {
       max-width: 100%;
     }
   }
+}
+
+.text-center {
+  text-align: center;
 }
 
 h1 {
@@ -146,12 +169,19 @@ h1 {
   }
 }
 
+h2 {
+  font-size: 15px;
+  @include screen(small) {
+    font-size: 24px;
+  }
+}
+
 main {
   .intro {
     color: #c7881c;
     text-align: center;
-    p {
-      max-width: 55%;
+    p:not(.intro-cta) {
+      max-width: 65%;
       margin: 0 auto;
     }
     @include screen(small) {
@@ -161,10 +191,6 @@ main {
       p {
         max-width: 100%;
       }
-    }
-    .btn {
-      clear: both;
-      margin-top: 0.5em;
     }
     .intro-cta {
       position: absolute;
@@ -178,4 +204,46 @@ main {
       }
     }
   }
+}
+
+.options-list {
+  list-style: none;
+  margin: 20px 0 30px;
+  padding: 0;
+  text-align: center;
+  @include screen(medium) {
+    margin: 50px 0 70px;
+  }
+  li {
+    display: inline-block;
+    margin: 0 10px 20px;
+    padding: 0 20px;
+    vertical-align: top;
+    max-width: calc(50% - 62px);
+    @include screen(medium) {
+      max-width: 25%;
+    }
+    img {
+      display: block;
+      margin-bottom: 5px;
+      max-width: 100%;
+      @include screen(medium) {
+        margin-bottom: 10px;
+      }
+    }
+    span  {
+      display: block;
+      font-size: 10px;
+      @include screen(medium) {
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+.step {
+  display: none;
+}
+.step-3 {
+  display: block;
 }
