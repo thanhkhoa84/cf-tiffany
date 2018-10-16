@@ -59,24 +59,6 @@ $(document).ready(function() {
     });
   });
 
-  $('#fbShare').on('click', function(e) {
-    e.preventDefault();
-    FB.ui({
-      method: 'share_open_graph',
-      action_type: 'og.likes',
-      action_properties: JSON.stringify({
-        object: {
-          image:'https://ct2018.asiadigitalhub.com/sites/default/files/101556094912508251539674674_5331.jpg',
-          url: 'https://ct2018.asiadigitalhub.com',
-          title: fd.name,
-          description: fd.quote
-        }
-      })
-    }, function(response) {
-      console.log(repsonse)
-    })
-  })
-
   $('#reset').on('click', function(e) {
     e.preventDefault();
     reset()
