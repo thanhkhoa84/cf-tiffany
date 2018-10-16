@@ -3,11 +3,13 @@ $(document).ready(function() {
   canvas.width = 500
   canvas.height = 600
   var ctx = canvas.getContext('2d');
-  var placeholder = new Image(500, 600);
   var ava = new Image(165, 165);    
   ava.crossOrigin='anonymous';
   var base64;
   var resultImg = document.getElementById('result-image');
+  var initImageSrc = resultImg.src;
+  var placeholder = new Image(500, 600);
+
   var fd = {
     team: 1,
     scent: 1,
@@ -16,7 +18,7 @@ $(document).ready(function() {
     photo: ''
   };
   var quotes; 
-  $.getJSON( "https://ct2018.asiadigitalhub.com/api/ct/matrix", function( data ) {
+  $.getJSON( 'https://ct2018.asiadigitalhub.com/api/ct/matrix', function( data ) {
     quotes = data; 
   });
 
@@ -113,7 +115,7 @@ $(document).ready(function() {
       photo: ''
     };
     $('#result-text').text('');
-    $('#result-image').attr('src', '');
+    $('#result-image').attr('src', initImageSrc);
     goToScreen(1);
   }
 
@@ -155,7 +157,7 @@ $(document).ready(function() {
 
   function setupCanvas(response) {
     var fullName = response.first_name + ' ' + response.last_name;
-    placeholder.src = '../images/placeholder.jpg';
+    placeholder.src = initImageSrc;
 
     placeholder.onload = function() {
       ctx.drawImage(placeholder, 0, 0)
