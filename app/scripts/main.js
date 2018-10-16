@@ -1,4 +1,7 @@
 $(document).ready(function() {
+  // parallax
+
+
   var canvas = document.createElement('canvas')
   canvas.width = 500
   canvas.height = 600
@@ -7,7 +10,9 @@ $(document).ready(function() {
   ava.crossOrigin='anonymous';
   var base64;
   var resultImg = document.getElementById('result-image');
-  var initImageSrc = resultImg.src;
+  if(resultImg) {
+    var initImageSrc = resultImg.src;
+  }
   var placeholder = new Image(500, 600);
 
   var fd = {
@@ -25,10 +30,14 @@ $(document).ready(function() {
 
   // user pick
   $('#team li a').on('click', function(e) {
+    $('#team li a').removeClass('active');
+    $(this).addClass('active');
     fd.team = $(this).data('team')
   })
 
   $('#scent li a').on('click', function(e) {
+    $('#scent li a').removeClass('active');
+    $(this).addClass('active');
     fd.scent = $(this).data('scent');
   })
 
@@ -37,8 +46,6 @@ $(document).ready(function() {
   })
 
   $('#seeResult').on('click', function(e) {
-    fd.quote = quotes[fd.team].items[fd.scent].content;
-    fd.name = quotes[fd.team].items[fd.scent].name;
     setResultText();
     FB.getLoginStatus(function (response) {
       if (response.status === 'connected') {
@@ -115,6 +122,9 @@ $(document).ready(function() {
   }
 
   function setResultText() {
+    fd.quote = quotes[fd.team].items[fd.scent].content;
+    fd.name = quotes[fd.team].items[fd.scent].name;
+    console.log(fd)
     $('#result-text').text(fd.quote);
     $('#result-name').text(fd.name)
     sendDataToServer(fd);
@@ -132,6 +142,10 @@ $(document).ready(function() {
       quote: '',
       photo: ''
     };
+    $('#team li a').removeClass('active');
+    $('#team li a').eq(0).addClass('active');
+    $('#scent li a').removeClass('active');
+    $('#scent li a').eq(0).addClass('active');
     $('#result-text').text('');
     $('#result-image').attr('src', initImageSrc);
     goToScreen(1);
