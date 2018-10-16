@@ -196,6 +196,9 @@ header {
   left: 0;
   right: 0;
   overflow: hidden;
+  @include screen(medium) {
+    text-align: left;
+  }
   @include screen(large) {
     text-align: left;
     left: calc((100vw - 1140px)/2);
@@ -204,14 +207,11 @@ header {
     max-width: 98%;
     max-height: 60vh;
     @include screen(medium) {
-      height: 80vh;
       max-width: none;
       max-height: none;
     }
     @include screen(large) {
-      height: 60vh;
       max-width: none;
-      max-height: none;
     }
   }
 
@@ -255,38 +255,30 @@ header {
   /* ----------- iPad 1, 2, Mini and Air ----------- */
 
   /* Portrait */
-  @media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (orientation: portrait) 
-  and (-webkit-min-device-pixel-ratio: 1) {
-    img {
-      max-width: none;
-      height: 50vh;
-    }
-  }
+  // @media only screen 
+  // and (min-device-width: 768px) 
+  // and (max-device-width: 1024px) 
+  // and (orientation: portrait) 
+  // and (-webkit-min-device-pixel-ratio: 1) {
+  //   img {
+  //     max-width: none;
+  //     height: 50vh;
+  //   }
+  // }
 
-  /* Landscape */
-  @media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (orientation: landscape) 
-  and (-webkit-min-device-pixel-ratio: 1) {
-    img {
-      max-width: none;
-      height: 50vh;
-    }
-  }
+  // /* Landscape */
+  // @media only screen 
+  // and (min-device-width: 768px) 
+  // and (max-device-width: 1024px) 
+  // and (orientation: landscape) 
+  // and (-webkit-min-device-pixel-ratio: 1) {
+  //   img {
+  //     max-width: none;
+  //     height: 50vh;
+  //   }
+  // }
 
   /* ----------- iPad 3, 4 and Pro 9.7" ----------- */
-  /* Portrait and Landscape */
-  @media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (-webkit-min-device-pixel-ratio: 2) {
-
-  }
-
   /* Portrait */
   @media only screen 
   and (min-device-width: 768px) 
@@ -317,7 +309,6 @@ header {
   left: 0;
   bottom: 0;
   right: 0;
-  z-index: 1;
   pointer-events: none;
 }
 
@@ -349,7 +340,7 @@ main {
       max-width: 65%;
       margin: 0 auto;
     }
-    @include screen(large) {
+    @include screen(medium) {
       float: right;
       margin-top: 80px;
       max-width: 430px;
