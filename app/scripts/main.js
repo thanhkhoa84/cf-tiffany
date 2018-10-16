@@ -11,6 +11,12 @@ $(document).ready(function() {
     var initImageSrc = resultImg.src;
   }
   var placeholder = new Image(500, 600);
+  var teams = [
+    'CÁ TÍNH', 'SÀNH ĐIỆU', 'SANG CHẢNH', 'GỢI CẢM'
+  ]
+  var scents = [
+    'THANH THOÁT', 'QUÝ PHÁI', 'KIÊU SA', 'THANH LỊCH'
+  ]
 
   var fd = {
     team: 1,
@@ -193,9 +199,14 @@ $(document).ready(function() {
       ctx.font = '500 25px \'Cormorant Garamond\'';
       ctx.textAlign = 'center';
       ctx.fillText(fullName.toUpperCase(), canvas.width/2, 90);
+      
+      ctx.font = '500 21px \'Cormorant Garamond\'';
+      ctx.textAlign='end'; 
+      ctx.fillText(teams[fd.team - 1], canvas.width - 200, canvas.height - 229);
+      ctx.textAlign='start'; 
+      ctx.fillText(scents[fd.scent - 1], canvas.width/2 - 40, canvas.height - 202);
 
       ava.src = response.picture.data.url;
-
       ava.onload = function() {
         ctx.drawImage(ava, 0, 0, 165, 165, 50, 125, 165, 165);
         base64 = canvas.toDataURL();
@@ -205,62 +216,6 @@ $(document).ready(function() {
         goToScreen(3);
       }
     }
-  }
-
-  function postImageToFacebook(token, filename, mimeType, imageData, message) {
-    var fd = new FormData();
-    fd.append('access_token', token);
-    fd.append('source', imageData);
-    fd.append('no_story', true);
-
-    // Upload image to facebook without story(post to feed)
-    $.ajax({
-      url: 'https://graph.facebook.com/me/photos?access_token=' + token,
-      type: 'POST',
-      data: fd,
-      processData: false,
-      contentType: false,
-      cache: false,
-      success: function (data) {
-        console.log('success: ', data);
-        // Get image source url
-        FB.api(
-          '/' + data.id + '?fields=images',
-          function (response) {
-            if (response && !response.error) {
-              //console.log(response.images[0].source);
-
-              // Create facebook post using image
-              FB.api(
-                '/me/feed',
-                'POST', {
-                  'message': '',
-                  'picture': response.images[0].source,
-                  'link': window.location.href,
-                  'name': 'Look at the cute panda!',
-                  'description': message,
-                  'privacy': {
-                    value: 'SELF'
-                  }
-                },
-                function (response) {
-                  if (response && !response.error) {
-                    /* handle the result */
-                    console.log('Posted story to facebook');
-                  }
-                }
-              );
-            }
-          }
-        );
-      },
-      error: function (shr, status, data) {
-        console.log('error ' + data + ' Status ' + shr.status);
-      },
-      complete: function (data) {
-        //console.log('Post to facebook Complete');
-      }
-    });
   }
 
   function postCanvasToURL() {

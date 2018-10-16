@@ -188,10 +188,16 @@ body {
   }
   img {
     max-width: 98%;
-
+    max-height: 60vh;
+    @include screen(medium) {
+      height: 80vh;
+      max-width: none;
+      max-height: none;
+    }
     @include screen(large) {
       height: 80vh;
       max-width: none;
+      max-height: none;
     }
   }
 
