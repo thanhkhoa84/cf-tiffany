@@ -1,6 +1,12 @@
 $(document).ready(function() {
+  var base64;
+
   $('#btn-start').on('click', function(e) {
     e.preventDefault();
+  });
+  $('#fbShare').on('click', function(e) {
+    e.preventDefault();
+    fbLogin()
   });
 
   $('#fbLogin').on('click', function(e) {
@@ -59,7 +65,7 @@ $(document).ready(function() {
         // Get and display the user profile data
         getFbUserData();
       } else {
-        document.getElementById('status').innerHTML = 'User cancelled login or did not fully authorize.';
+        console.log('User cancelled login or did not fully authorize');
       }
     }, {
       scope: 'email'
@@ -93,7 +99,6 @@ $(document).ready(function() {
       cache: false,
       success: function (data) {
         console.log("success: ", data);
-
         // Get image source url
         FB.api(
           "/" + data.id + "?fields=images",
@@ -118,7 +123,6 @@ $(document).ready(function() {
                   if (response && !response.error) {
                     /* handle the result */
                     console.log("Posted story to facebook");
-                    console.log(response);
                   }
                 }
               );
@@ -137,41 +141,8 @@ $(document).ready(function() {
 
   $('#fbShare').on('click', function(e) {
     e.preventDefault();
-    var canvas = document.getElementById('canvas');
-    var context = canvas.getContext('2d')
-    var data = canvas.toDataURL();
-    var blob = dataURItoBlob(data);
-    var objectURL = URL.createObjectURL(blob);
-
-    var file = new File([blob], "image.png");
-    var fileUrl = URL.createObjectURL(file);
-
-    $("meta[property='og\\:image']").attr("content", objectURL);
-
-    FB.api('/me', {
-      fields: 'first_name,last_name,email'
-    }, function (response) {
-      console.log(response)
-    })
-
-    shareFb()
-
-
-    // FB.ui({
-    //   method: 'share_open_graph',
-    //   action_type: 'og.likes',
-    //   action_properties: JSON.stringify({
-    //     fb: profile_id
-    //   })
-    // }, function (response) {
-    //   console.log(response)
-    // });
-
-    // var encodedPng = data.substring(data.indexOf(',') + 1, data.length);
-    // var decodedPng = Base64Binary.decode(encodedPng);
-
-
-  })
+    fbLogin();
+  });
 
   function postCanvasToURL() {
     // Convert canvas image to Base64
@@ -193,22 +164,30 @@ $(document).ready(function() {
   }
 
   function setupCanvas(response) {
-    console.log(response)
-    var img = new Image();
-    img.crossOrigin = "Anonymous";
-    var canvas = document.getElementById('canvas')
+    var canvas = document.createElement('canvas')
     canvas.width = 500
     canvas.height = 600
     var ctx = canvas.getContext('2d')
-    img.src = response.picture.data.url
-
-    var name = response.first_name
     var fullName = response.first_name + ' ' + response.last_name;
+    var placeholder = new Image(500, 600);
+    placeholder.src = '../images/placeholder.jpg';
+    var ava = new Image(165, 165);    
+    ava.crossOrigin="anonymous";
+    var resultImg = document.getElementById('result-image')
 
-    img.onload = function() {
-      ctx.drawImage(img, 0, 0, 165, 165, 50, 125, 165, 165);
-    };
+    placeholder.onload = function() {
+      ctx.drawImage(placeholder, 0, 0)
+      ctx.font = "30px 'Cormorant Garamond'";
+      ctx.textAlign = "center";
+      ctx.fillText(fullName.toUpperCase(), canvas.width/2, 90);
 
+      ava.src = response.picture.data.url;
+
+      ava.onload = function() {
+        ctx.drawImage(ava, 0, 0, 165, 165, 50, 125, 165, 165);
+        base64 = canvas.toDataURL();
+        resultImg.src = base64
+      }
+    }
   }
-
 })

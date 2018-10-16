@@ -38,7 +38,7 @@ body {
 .container {
   max-width: 1140px;
   margin: 0 auto;
-  padding: 0 10px;
+  padding: 0 20px;
   position: relative;
   @include screen(small) {
     padding: 0 20px;
@@ -68,6 +68,11 @@ body {
   @include screen(small) {
     color: #c7881c;
     position: static;
+    .btn {
+      & + .btn {
+        margin-left: 100px;
+      }
+    }
   }
 }
 
@@ -83,6 +88,9 @@ body {
   text-decoration: none;
   position: relative;
   min-width: 200px;
+  &.btn-short {
+    min-width: 70px
+  }
   &:before {
     background: url(../images/bg-btn.jpg) no-repeat center;
     content: '';
@@ -98,10 +106,20 @@ body {
     height: 50px;
     line-height: 50px;
     min-width: 300px;
+    &.btn-short {
+      min-width: 220px;
+    }
   }
   span {
     position: relative;
     z-index: 5;
+  }
+}
+
+.max-width-55 {
+  @include screen(small) {
+    max-width: 55%;
+    margin: 0 auto;
   }
 }
 
@@ -130,7 +148,7 @@ body {
     background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 65%, rgba(0, 0, 0, 0.72) 78%, rgba(0, 0, 0, 0.72) 100%);
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 65%, rgba(0, 0, 0, 0.72) 78%, rgba(0, 0, 0, 0.72) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#b8000000', GradientType=0);
-    content: '';
+    // content: '';
     display: block;
     height: 150px;
     position: fixed;
@@ -238,6 +256,19 @@ main {
         font-size: 12px;
       }
     }
+  }
+}
+
+figure {
+  display: block;
+  text-align: center;
+  margin: 20px auto;
+  @include screen(medium) {
+    margin: 50px auto;
+  }
+  img {
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
   }
 }
 
