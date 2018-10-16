@@ -131,7 +131,7 @@ body {
 }
 
 .max-width-55 {
-  @include screen(large) {
+  @include screen(medium) {
     max-width: 55%;
     margin: 0 auto;
   }
