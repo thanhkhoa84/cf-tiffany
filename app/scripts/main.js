@@ -55,15 +55,16 @@ $(document).ready(function() {
   })
 
   $('#seeResult').on('click', function(e) {
-    setResultText();
     if($(this).hasClass('disabled')) {
       $('#popup-team').fadeIn();
     } else {
+      $('#loader').show();
+      setResultText();
       FB.getLoginStatus(function (response) {
         if (response.status === 'connected') {
           getFbUserData();
         } else {
-          showPopUp();
+          $('#popup-login').show();
         }
       });
     }
@@ -202,7 +203,7 @@ $(document).ready(function() {
         base64 = canvas.toDataURL();
         resultImg.src = base64;
         fd.photo = base64;
-        hidePopup();
+        $('#loader').fadeOut();
         goToScreen(3);
       }
     }
