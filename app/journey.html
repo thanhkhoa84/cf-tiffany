@@ -90,7 +90,7 @@
           </ul>
             <p class="buttons">
               Hãy đăng nhập Facebook để xem kết quả<br/>
-              <a href="javascript:void(0);" class="btn" id="btnScent"><span>XEM KẾT QUẢ</span></a>
+              <a href="javascript:void(0);" class="btn" id="seeResult"><span>XEM KẾT QUẢ</span></a>
             </p>
         </div>
         <div class="step step-3">
@@ -109,6 +109,14 @@
     </main>
 
 
+    <div class="popup">
+      <div class="popup-content">
+          <a href="javascript:void(0);" class="close"><img src="./images/btn-close.png" alt=""></a>
+          <p>Hãy đăng nhập Facebook<br/>để xem được kết quả!</p>
+          <p><a href="javascript:void(0);" class="btn" id="fbLogin"><span>ĐĂNG NHẬP FACEBOOK</span></a></p>
+      </div>
+    </div>
+
     <script>
       window.fbAsyncInit = function () {
         FB.init({
@@ -117,9 +125,7 @@
           xfbml: true,
           version: 'v3.1'
         });
-
         FB.AppEvents.logPageView();
-
       };
 
       (function (d, s, id) {

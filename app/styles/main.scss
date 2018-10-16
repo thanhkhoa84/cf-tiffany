@@ -24,6 +24,10 @@
 }
 
 
+* {
+  box-sizing: border-box;
+}
+
 html {
   background: url(../images/bg.jpg) center no-repeat;
   background-size: cover;
@@ -46,7 +50,7 @@ body {
 .container {
   max-width: 1140px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 10px;
   position: relative;
   @include screen(small) {
     padding: 0 20px;
@@ -90,14 +94,14 @@ body {
   display: inline-block;
   font-size: 12px;
   padding: 0 15px;
-  height: 30px;
-  line-height: 30px;
+  height: 40px;
+  line-height: 40px;
   text-align: center;
   text-decoration: none;
   position: relative;
   min-width: 200px;
   &.btn-short {
-    min-width: 70px
+    min-width: 100px
   }
   &:before {
     background: url(../images/bg-btn.jpg) no-repeat center;
@@ -255,9 +259,8 @@ main {
   li {
     display: inline-block;
     margin: 0 10px 20px;
-    padding: 0 20px;
     vertical-align: top;
-    max-width: calc(50% - 62px);
+    max-width: calc(50% - 30px);
     @include screen(medium) {
       max-width: 25%;
     }
@@ -292,9 +295,64 @@ figure {
   }
 }
 
-.step {
+.popup {
+  background: rgba(0, 0, 0, .6);
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.popup-content {
+  border: 2px solid #ced9a4;
+  max-width: 80%;
+  min-width: 300px;
+  text-align: center;
+  padding: 20px 10px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  @include screen(small) {
+    width: 470px;
+    max-width: none;
+  }
+  &:before {
+    background: url(../images/bg-popup.png) no-repeat center;
+    background-size: cover;
+    content: '';
+    display: block;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    bottom: 5px;
+    left: 5px;
+  }
+  p {
+    position: relative;
+  }
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 13px;
+    z-index: 2;
+  }
+  .btn {
+    border: 0;
+    min-width: 180px;
+    &:before {
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+  }
+}
+
+.step:not(.step-1) {
   display: none;
 }
-.step-3 {
-  display: block;
-}
+

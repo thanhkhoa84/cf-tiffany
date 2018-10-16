@@ -1,5 +1,14 @@
 $(document).ready(function() {
+  var canvas = document.createElement('canvas')
+  canvas.width = 500
+  canvas.height = 600
+  var ctx = canvas.getContext('2d');
+  var placeholder = new Image(500, 600);
+  var ava = new Image(165, 165);    
+  ava.crossOrigin='anonymous';
   var base64;
+  var resultImg = document.getElementById('result-image');
+  var quotes;
   var fd = {
     team: 1,
     scent: 1,
@@ -7,13 +16,30 @@ $(document).ready(function() {
     photo: ''
   };
 
-  $('#btn-start').on('click', function(e) {
-    e.preventDefault();
-  });
-  $('#fbShare').on('click', function(e) {
-    e.preventDefault();
-    fbLogin()
-  });
+  // user pick
+  $('#team li a').on('click', function(e) {
+    fd.team = $(this).data('team')
+  })
+
+  $('#scent li a').on('click', function(e) {
+    fd.team = $(this).data('scent')
+  })
+
+  $('#btnTeam').on('click', function(e) {
+    setResultText();
+    goToScreen(2);
+  })
+
+  $('#seeResult').on('click', function(e) {
+    FB.getLoginStatus(function (response) {
+      if (response.status === 'connected') {
+        getFbUserData();
+      } else {
+        showPopUp();
+      }
+    });
+  })
+
   $('#reset').on('click', function(e) {
     e.preventDefault();
     reset()
@@ -43,6 +69,46 @@ $(document).ready(function() {
     });
   });
 
+  $('.close').on('click', function(e) {
+    e.preventDefault();
+    $('.popup').hide();
+  })
+
+  function showPopUp() {
+    $('.popup').fadeIn();
+  }
+
+  function hidePopup() {
+    $('.popup').fadeOut();
+  }
+
+  function goToScreen(screen) {
+    $('.step').hide();
+    $('.step-'+screen).show();
+  }
+
+  function setResultText() {
+    // fd.quote = quotes[fd.team-1][fd.scent-1]
+    $('#result-text').text(fd.quote);
+    sendDataToServer(fd);
+  }
+
+  function sendDataToServer(fd) {
+    // $.ajax
+  }
+
+  function reset() {
+    fd = {
+      team: 1,
+      scent: 1,
+      quote: '',
+      photo: ''
+    };
+    $('#result-text').text('');
+    $('#result-image').attr('src', '');
+    goToScreen(1);
+  }
+
   function shareFb() {
     FB.ui({
       method: 'share_open_graph',
@@ -56,7 +122,6 @@ $(document).ready(function() {
   }
 
   function statusChangeCallback(response) {
-    console.log(response);
     if (accessToken) {
       var accessToken = response.authResponse.accessToken;
     }
@@ -69,19 +134,6 @@ $(document).ready(function() {
     }
   }
 
-  function fbLogin() {
-    FB.login(function (response) {
-      if (response.authResponse) {
-        // Get and display the user profile data
-        getFbUserData();
-      } else {
-        console.log('User cancelled login or did not fully authorize');
-      }
-    }, {
-      scope: 'email'
-    });
-  }
-
   function getFbUserData() {
     FB.api('/me', {
         locale: 'en_US',
@@ -91,6 +143,28 @@ $(document).ready(function() {
         setupCanvas(response)
       }
     );
+  }
+
+  function setupCanvas(response) {
+    var fullName = response.first_name + ' ' + response.last_name;
+    placeholder.src = '../images/placeholder.jpg';
+
+    placeholder.onload = function() {
+      ctx.drawImage(placeholder, 0, 0)
+      ctx.font = '30px \'Cormorant Garamond\'';
+      ctx.textAlign = 'center';
+      ctx.fillText(fullName.toUpperCase(), canvas.width/2, 90);
+
+      ava.src = response.picture.data.url;
+
+      ava.onload = function() {
+        ctx.drawImage(ava, 0, 0, 165, 165, 50, 125, 165, 165);
+        base64 = canvas.toDataURL();
+        resultImg.src = fd.photo = base64
+        hidePopup();
+        goToScreen(3);
+      }
+    }
   }
 
   function postImageToFacebook(token, filename, mimeType, imageData, message) {
@@ -149,11 +223,6 @@ $(document).ready(function() {
     });
   }
 
-  $('#fbShare').on('click', function(e) {
-    e.preventDefault();
-    fbLogin();
-  });
-
   function postCanvasToURL() {
     // Convert canvas image to Base64
     var img = snap.toDataURL();
@@ -173,59 +242,5 @@ $(document).ready(function() {
     });
   }
 
-  function setupCanvas(response) {
-    var canvas = document.createElement('canvas')
-    canvas.width = 500
-    canvas.height = 600
-    var ctx = canvas.getContext('2d')
-    var fullName = response.first_name + ' ' + response.last_name;
-    var placeholder = new Image(500, 600);
-    placeholder.src = '../images/placeholder.jpg';
-    var ava = new Image(165, 165);    
-    ava.crossOrigin='anonymous';
-    var resultImg = document.getElementById('result-image')
-
-    placeholder.onload = function() {
-      ctx.drawImage(placeholder, 0, 0)
-      ctx.font = '30px \'Cormorant Garamond\'';
-      ctx.textAlign = 'center';
-      ctx.fillText(fullName.toUpperCase(), canvas.width/2, 90);
-
-      ava.src = response.picture.data.url;
-
-      ava.onload = function() {
-        ctx.drawImage(ava, 0, 0, 165, 165, 50, 125, 165, 165);
-        base64 = canvas.toDataURL();
-        resultImg.src = base64
-      }
-    }
-  }
-
-  // user pick
-
-  $('#team li a').on('click', function(e) {
-    fd.team = $(this).data('team')
-    console.log(fd)
-  })
-
-  $('#scent li a').on('click', function(e) {
-    fd.team = $(this).data('scent')
-    console.log(fd)
-  })
-
-  $('#btnTeam').on('click', function(e) {
-    goToScreen(2);
-  })
-  $('#btnScent').on('click', function(e) {
-    goToScreen(3);
-  })
-
-  function goToScreen(screen) {
-    $('.step').hide();
-    $('.step-'+screen).show();
-  }
-
-  function reset() {
-    goToScreen(1);
-  }
+  
 })
