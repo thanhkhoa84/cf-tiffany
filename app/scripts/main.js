@@ -8,13 +8,18 @@ $(document).ready(function() {
   ava.crossOrigin='anonymous';
   var base64;
   var resultImg = document.getElementById('result-image');
-  var quotes;
   var fd = {
     team: 1,
     scent: 1,
+    name: '',
     quote: '',
     photo: ''
   };
+  var quotes; 
+  $.getJSON( "https://ct2018.asiadigitalhub.com/api/ct/matrix", function( data ) {
+    quotes = data; 
+  });
+
 
   // user pick
   $('#team li a').on('click', function(e) {
@@ -22,15 +27,17 @@ $(document).ready(function() {
   })
 
   $('#scent li a').on('click', function(e) {
-    fd.team = $(this).data('scent')
+    fd.scent = $(this).data('scent');
   })
 
   $('#btnTeam').on('click', function(e) {
-    setResultText();
     goToScreen(2);
   })
 
   $('#seeResult').on('click', function(e) {
+    fd.quote = quotes[fd.team].items[fd.scent].content;
+    fd.name = quotes[fd.team].items[fd.scent].name;
+    setResultText();
     FB.getLoginStatus(function (response) {
       if (response.status === 'connected') {
         getFbUserData();
@@ -88,8 +95,8 @@ $(document).ready(function() {
   }
 
   function setResultText() {
-    // fd.quote = quotes[fd.team-1][fd.scent-1]
     $('#result-text').text(fd.quote);
+    $('#result-name').text(fd.name)
     sendDataToServer(fd);
   }
 
@@ -101,6 +108,7 @@ $(document).ready(function() {
     fd = {
       team: 1,
       scent: 1,
+      name: '',
       quote: '',
       photo: ''
     };
@@ -160,7 +168,8 @@ $(document).ready(function() {
       ava.onload = function() {
         ctx.drawImage(ava, 0, 0, 165, 165, 50, 125, 165, 165);
         base64 = canvas.toDataURL();
-        resultImg.src = fd.photo = base64
+        resultImg.src = base64;
+        fd.photo = base64;
         hidePopup();
         goToScreen(3);
       }

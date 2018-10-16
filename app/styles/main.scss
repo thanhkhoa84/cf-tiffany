@@ -206,6 +206,7 @@ body {
 
 h1 {
   font-size: 19px;
+  text-transform: uppercase;
   @include screen(small) {
     font-size: 38px;
   }
@@ -213,6 +214,7 @@ h1 {
 
 h2 {
   font-size: 15px;
+  text-transform: uppercase;
   @include screen(small) {
     font-size: 24px;
   }
