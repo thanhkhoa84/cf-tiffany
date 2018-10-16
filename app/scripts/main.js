@@ -56,7 +56,7 @@ $(document).ready(function() {
 
   $('#seeResult').on('click', function(e) {
     if($(this).hasClass('disabled')) {
-      $('#popup-team').fadeIn();
+      $('#popup-scent').fadeIn();
     } else {
       setResultText();
       FB.getLoginStatus(function (response) {
@@ -87,16 +87,19 @@ $(document).ready(function() {
           scope: 'email,public_profile',
           return_scopes: true
         });
+        $('#loader').hide();
       } else if (response.status === 'not_authorized') {
         FB.login(statusChangeCallback, {
           scope: 'email,public_profile',
           return_scopes: true
         });
+        $('#loader').hide();
       } else {
         FB.login(statusChangeCallback, {
           scope: 'email,public_profile',
           return_scopes: true
         });
+        $('#loader').hide();
       }
     });
   });

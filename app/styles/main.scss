@@ -198,6 +198,7 @@ header {
   overflow: hidden;
   @include screen(medium) {
     text-align: left;
+    max-height: 85vh;
   }
   @include screen(large) {
     text-align: left;
@@ -505,9 +506,9 @@ figure {
 .spinner {
   width: 40px;
   height: 40px;
-  margin: 0 auto;
+  margin-left: -20px;
+  margin-top: -20px;
   background-color: #eed47d;
-
   border-radius: 100%;  
   -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
   animation: sk-scaleout 1.0s infinite ease-in-out;
@@ -515,7 +516,6 @@ figure {
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
 }
 
 @-webkit-keyframes sk-scaleout {
