@@ -190,7 +190,7 @@ $(document).ready(function() {
 
     placeholder.onload = function() {
       ctx.drawImage(placeholder, 0, 0)
-      ctx.font = '30px \'Cormorant Garamond\'';
+      ctx.font = '500 25px \'Cormorant Garamond\'';
       ctx.textAlign = 'center';
       ctx.fillText(fullName.toUpperCase(), canvas.width/2, 90);
 
