@@ -1,5 +1,11 @@
 $(document).ready(function() {
   var base64;
+  var fd = {
+    team: 1,
+    scent: 1,
+    quote: '',
+    photo: ''
+  };
 
   $('#btn-start').on('click', function(e) {
     e.preventDefault();
@@ -7,6 +13,10 @@ $(document).ready(function() {
   $('#fbShare').on('click', function(e) {
     e.preventDefault();
     fbLogin()
+  });
+  $('#reset').on('click', function(e) {
+    e.preventDefault();
+    reset()
   });
 
   $('#fbLogin').on('click', function(e) {
@@ -189,5 +199,33 @@ $(document).ready(function() {
         resultImg.src = base64
       }
     }
+  }
+
+  // user pick
+
+  $('#team li a').on('click', function(e) {
+    fd.team = $(this).data('team')
+    console.log(fd)
+  })
+
+  $('#scent li a').on('click', function(e) {
+    fd.team = $(this).data('scent')
+    console.log(fd)
+  })
+
+  $('#btnTeam').on('click', function(e) {
+    goToScreen(2);
+  })
+  $('#btnScent').on('click', function(e) {
+    goToScreen(3);
+  })
+
+  function goToScreen(screen) {
+    $('.step').hide();
+    $('.step-'+screen).show();
+  }
+
+  function reset() {
+    goToScreen(1);
   }
 })
