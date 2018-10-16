@@ -1,10 +1,4 @@
 $(document).ready(function() {
-  // parallax
-  var scene = document.getElementById('petal')
-  var parallaxInstance = new Parallax(scene);
-
-
-
   var base64;
 
   $('#btn-start').on('click', function(e) {
