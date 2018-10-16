@@ -379,6 +379,7 @@ main {
       max-width: 25%;
     }
     img {
+      border-radius: 100%;
       display: block;
       margin: 0 auto 5px;
       max-width: 70%;
@@ -399,6 +400,11 @@ main {
         img {
           transition: all 0.4s ease-in-out;
           animation: float 3s ease-in-out infinite;
+        }
+      }
+      &.active {
+        img {
+          box-shadow: 0 0 20px rgba(238, 212, 135, 0.7);
         }
       }
     }
