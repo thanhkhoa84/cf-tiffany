@@ -6,7 +6,15 @@
 @import "./base/quantity-queries";
 @import "./base/variables";
 
-@import url('https://fonts.googleapis.com/css?family=Cormorant+Garamond:500&subset=latin-ext,vietnamese');
+
+@font-face {
+  font-family: 'CormorantGaramond-Medium';
+  src: url('../fonts/CormorantGaramond-Medium.eot?#iefix') format('embedded-opentype'),  url('../fonts/CormorantGaramond-Medium.otf')  format('opentype'),
+	     url('../fonts/CormorantGaramond-Medium.woff') format('woff'), url('../fonts/CormorantGaramond-Medium.ttf')  format('truetype'), url('../fonts/CormorantGaramond-Medium.svg#CormorantGaramond-Medium') format('svg');
+  font-weight: 500;
+  font-style: normal;
+}
+
 
 @font-face {
   font-family: 'Futura';
@@ -149,7 +157,7 @@ body {
     height: 131px;
   }
   h1 {
-    font-family: 'Cormorant Unicase', sans-serif;
+    font-family: 'CormorantGaramond-Medium', sans-serif;
     margin: 20px 0 0;
     @include screen(large) {
       margin-top: 40px;

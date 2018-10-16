@@ -109,7 +109,6 @@ $(document).ready(function() {
   function setResultText() {
     fd.quote = quotes[fd.team].items[fd.scent].content;
     fd.name = quotes[fd.team].items[fd.scent].name;
-    console.log(fd)
     $('#result-text').text(fd.quote);
     $('#result-name').text(fd.name)
     sendDataToServer(fd);
@@ -178,11 +177,11 @@ $(document).ready(function() {
 
     placeholder.onload = function() {
       ctx.drawImage(placeholder, 0, 0)
-      ctx.font = '500 25px \'Cormorant Garamond\'';
+      ctx.font = '500 25px \'CormorantGaramond-Medium\'';
       ctx.textAlign = 'center';
       ctx.fillText(fullName.toUpperCase(), canvas.width/2, 90);
       
-      ctx.font = '500 21px \'Cormorant Garamond\'';
+      ctx.font = '500 21px \'CormorantGaramond-Medium\'';
       ctx.textAlign='end'; 
       ctx.fillText(teams[fd.team - 1], canvas.width - 200, canvas.height - 229);
       ctx.textAlign='start'; 
