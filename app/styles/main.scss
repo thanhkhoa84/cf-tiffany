@@ -16,6 +16,14 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Futura';
+  src: url('../fonts/SFUFuturaBold.eot?#iefix') format('embedded-opentype'),  url('../fonts/SFUFuturaBold.woff') format('woff'), url('../fonts/SFUFuturaBold.ttf')  format('truetype'), url('../fonts/SFUFuturaBold.svg#SFUFuturaBold') format('svg');
+  font-weight: bold;
+  font-style: normal;
+}
+
+
 html {
   background: url(../images/bg.jpg) center no-repeat;
   background-size: cover;
