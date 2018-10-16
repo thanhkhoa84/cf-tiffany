@@ -42,7 +42,7 @@
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et.</p>
           <ul class="options-list" id="team">
             <li>
-              <a href="javascript:void(0);" data-team="1" class="active"><img src="./images/team-1.png" alt=""></a>
+              <a href="javascript:void(0);" data-team="1"><img src="./images/team-1.png" alt=""></a>
               <span>#Cá Tính đậm chất</span>
               <span>#ChâuBùi</span>
             </li>
@@ -62,14 +62,14 @@
               <span>#ChiPu</span>
             </li>
           </ul>
-            <p><a href="javascript:void(0);" class="btn" id="btnTeam"><span>KẾ TIẾP</span></a></p>
+            <p><a href="javascript:void(0);" class="btn disabled"  id="btnTeam"><span>KẾ TIẾP</span></a></p>
         </div>
         <div class="step step-2">
           <h2>HƯƠNG NƯỚC HOA TƯƠI MỚI NÀO<br/>BẠN ĐANG MUỐN THỬ?</h2>
           <p class="max-width-55">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et.</p>
           <ul class="options-list" id="scent">
             <li>
-              <a href="javascript:void(0);" data-scent="1" class="active"><img src="./images/scent-1.png" alt=""></a>
+              <a href="javascript:void(0);" data-scent="1"><img src="./images/scent-1.png" alt=""></a>
               <span>#Quý Phái với</span>
               <span>#Comfort Sophia</span>
             </li>
@@ -91,7 +91,7 @@
           </ul>
             <p class="buttons">
               Hãy đăng nhập Facebook để xem kết quả<br/>
-              <a href="javascript:void(0);" class="btn" id="seeResult"><span>XEM KẾT QUẢ</span></a>
+              <a href="javascript:void(0);" class="btn disabled" id="seeResult"><span>XEM KẾT QUẢ</span></a>
             </p>
         </div>
         <div class="step step-3">
@@ -110,13 +110,27 @@
     </main>
 
 
-    <div class="popup">
+    <div class="popup" id="popup-login">
       <div class="popup-content">
           <a href="javascript:void(0);" class="close"><img src="./images/btn-close.png" alt=""></a>
           <p>Hãy đăng nhập Facebook<br/>để xem được kết quả!</p>
           <p><a href="javascript:void(0);" class="btn" id="fbLogin"><span>ĐĂNG NHẬP FACEBOOK</span></a></p>
       </div>
     </div>
+
+    <div class="popup" id="popup-team">
+      <div class="popup-content">
+          <a href="javascript:void(0);" class="close"><img src="./images/btn-close.png" alt=""></a>
+          <p>Bạn chưa chọn dấu ấn thời trang</p>
+      </div>
+    </div>
+
+    <div class="popup" id="popup-scent">
+        <div class="popup-content">
+            <a href="javascript:void(0);" class="close"><img src="./images/btn-close.png" alt=""></a>
+            <p>Bạn chưa chọn hương nước hoa</p>
+        </div>
+      </div>
 
     <script>
       window.fbAsyncInit = function () {

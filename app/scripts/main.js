@@ -19,8 +19,8 @@ $(document).ready(function() {
   ]
 
   var fd = {
-    team: 1,
-    scent: 1,
+    team: 0,
+    scent: 0,
     name: '',
     quote: '',
     photo: ''
@@ -35,28 +35,38 @@ $(document).ready(function() {
   $('#team li a').on('click', function(e) {
     $('#team li a').removeClass('active');
     $(this).addClass('active');
+    $('#btnTeam').removeClass('disabled');
     fd.team = $(this).data('team')
   })
 
   $('#scent li a').on('click', function(e) {
     $('#scent li a').removeClass('active');
     $(this).addClass('active');
+    $('#seeResult').removeClass('disabled');
     fd.scent = $(this).data('scent');
   })
 
   $('#btnTeam').on('click', function(e) {
-    goToScreen(2);
+    if($(this).hasClass('disabled')) {
+      $('#popup-team').fadeIn();
+    } else {
+      goToScreen(2);
+    }
   })
 
   $('#seeResult').on('click', function(e) {
     setResultText();
-    FB.getLoginStatus(function (response) {
-      if (response.status === 'connected') {
-        getFbUserData();
-      } else {
-        showPopUp();
-      }
-    });
+    if($(this).hasClass('disabled')) {
+      $('#popup-team').fadeIn();
+    } else {
+      FB.getLoginStatus(function (response) {
+        if (response.status === 'connected') {
+          getFbUserData();
+        } else {
+          showPopUp();
+        }
+      });
+    }
   });
 
   $('#reset').on('click', function(e) {
@@ -94,11 +104,11 @@ $(document).ready(function() {
   })
 
   function showPopUp() {
-    $('.popup').fadeIn();
+    $('#popup-login').fadeIn();
   }
 
   function hidePopup() {
-    $('.popup').fadeOut();
+    $('#popup-login').fadeOut();
   }
 
   function goToScreen(screen) {
@@ -120,16 +130,15 @@ $(document).ready(function() {
 
   function reset() {
     fd = {
-      team: 1,
-      scent: 1,
+      team: 0,
+      scent: 0,
       name: '',
       quote: '',
       photo: ''
     };
     $('#team li a').removeClass('active');
-    $('#team li a').eq(0).addClass('active');
     $('#scent li a').removeClass('active');
-    $('#scent li a').eq(0).addClass('active');
+    $('#btnTeam, #seeResult').addClass('disabled');
     $('#result-text').text('');
     $('#result-image').attr('src', initImageSrc);
     goToScreen(1);

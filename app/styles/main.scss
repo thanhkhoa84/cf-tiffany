@@ -394,12 +394,32 @@ main {
         font-size: 12px;
       }
     }
+    a {
+      &:hover, &.active {
+        img {
+          transition: all 0.4s ease-in-out;
+          animation: float 3s ease-in-out infinite;
+        }
+      }
+    }
     a:not(.active) {
       img {
         opacity: 0.7;
       }
     }
   }
+}
+
+@keyframes float {
+	0% {
+		transform: translatey(0px);
+	}
+	50% {
+		transform: translatey(-20px);
+	}
+	100% {
+		transform: translatey(0px);
+	}
 }
 
 figure {
