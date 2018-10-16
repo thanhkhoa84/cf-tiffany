@@ -320,6 +320,11 @@ header {
   z-index: 1;
 }
 
+main {
+  position: relative;
+  z-index: 2;
+}
+
 .text-center {
   text-align: center;
 }
