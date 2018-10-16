@@ -1,7 +1,4 @@
 $(document).ready(function() {
-  // parallax
-
-
   var canvas = document.createElement('canvas')
   canvas.width = 500
   canvas.height = 600
