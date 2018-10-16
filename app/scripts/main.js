@@ -15,7 +15,7 @@ $(document).ready(function() {
     'CÁ TÍNH', 'SÀNH ĐIỆU', 'SANG CHẢNH', 'GỢI CẢM'
   ]
   var scents = [
-    'THANH THOÁT', 'QUÝ PHÁI', 'KIÊU SA', 'THANH LỊCH'
+    'QUÝ PHÁI', 'THANH LỊCH', 'THANH THOÁT', 'KIÊU SA'
   ]
 
   var fd = {
