@@ -58,10 +58,10 @@ $(document).ready(function() {
     if($(this).hasClass('disabled')) {
       $('#popup-team').fadeIn();
     } else {
-      $('#loader').show();
       setResultText();
       FB.getLoginStatus(function (response) {
         if (response.status === 'connected') {
+          $('#loader').show();
           getFbUserData();
         } else {
           $('#popup-login').show();
@@ -77,6 +77,8 @@ $(document).ready(function() {
 
   $('#fbLogin').on('click', function(e) {
     e.preventDefault();
+    $('#loader').show();
+    $('#popup-login').hide();
     FB.getLoginStatus(function (response) {
       if (response.status === 'connected') {
         getFbUserData();
