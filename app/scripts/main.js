@@ -227,6 +227,7 @@ $(document).ready(function() {
         fd.photo = base64;
         $('#loader').fadeOut();
         goToScreen(3);
+        $('.flower').hide();
       }
     }
   }
