@@ -474,3 +474,13 @@ figure {
   top: -100vh;
   left: -100vw;
 }
+
+.tc {
+  margin-bottom: 30px;
+}
+
+.tc-content {
+  max-height: 50vh;
+  overflow: auto;
+  padding: 0 20px;
+}

@@ -196,7 +196,7 @@ $(document).ready(function() {
     var teamName = teams[fd.team - 1];
     var scentName = scents[fd.scent - 1];
     fd.fullName = fullName;
-    $('#result-name').text(response.first_name)
+    $('#result-name').text(fullName)
 
     var fbCanvas = document.createElement('canvas');
     var ctx2 = fbCanvas.getContext('2d')
