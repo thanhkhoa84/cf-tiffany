@@ -18,9 +18,9 @@
 
 @font-face {
   font-family: 'Futura';
-  src: url('../fonts/SFUFutura.eot?#iefix') format('embedded-opentype'), 
-  url('../fonts/SFUFutura.woff') format('woff'), 
-  url('../fonts/SFUFutura.ttf') format('truetype'), 
+  src: url('../fonts/SFUFutura.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/SFUFutura.woff') format('woff'),
+  url('../fonts/SFUFutura.ttf') format('truetype'),
   url('../fonts/SFUFutura.svg#SFUFutura') format('svg');
   font-weight: normal;
   font-style: normal;
@@ -90,11 +90,6 @@ body {
   @include screen(small) {
     color: #c7881c;
     position: static;
-    .btn {
-      & + .btn {
-        margin-left: 100px;
-      }
-    }
   }
 }
 
@@ -123,13 +118,13 @@ body {
     bottom: 5px;
     left: 5px;
   }
-  @include screen(large) {
+  @include screen(medium) {
     font-size: 20px;
     height: 50px;
     line-height: 50px;
     min-width: 300px;
     &.btn-short {
-      min-width: 220px;
+      min-width: 40%;
     }
   }
   span {
@@ -218,8 +213,8 @@ header {
 
   /* ----------- iPhone 5, 5S, 5C and 5SE ----------- */
   /* Portrait */
-  @media only screen 
-  and (min-device-width: 320px) 
+  @media only screen
+  and (min-device-width: 320px)
   and (max-device-width: 568px)
   and (-webkit-min-device-pixel-ratio: 2)
   and (orientation: portrait) {
@@ -231,11 +226,11 @@ header {
 
   /* ----------- iPhone 6, 6S, 7 and 8 ----------- */
   /* Portrait */
-  @media only screen 
-  and (min-device-width: 375px) 
-  and (max-device-width: 667px) 
+  @media only screen
+  and (min-device-width: 375px)
+  and (max-device-width: 667px)
   and (-webkit-min-device-pixel-ratio: 2)
-  and (orientation: portrait) { 
+  and (orientation: portrait) {
     img {
       max-width: none;
       height: 50vh;
@@ -243,10 +238,10 @@ header {
   }
 
   // ipx
-  @media only screen 
-    and (min-device-width: 375px) 
-    and (max-device-width: 812px) 
-    and (-webkit-min-device-pixel-ratio: 3) { 
+  @media only screen
+    and (min-device-width: 375px)
+    and (max-device-width: 812px)
+    and (-webkit-min-device-pixel-ratio: 3) {
       img {
         max-width: none;
         height: 50vh;
@@ -256,10 +251,10 @@ header {
   /* ----------- iPad 1, 2, Mini and Air ----------- */
 
   /* Portrait */
-  // @media only screen 
-  // and (min-device-width: 768px) 
-  // and (max-device-width: 1024px) 
-  // and (orientation: portrait) 
+  // @media only screen
+  // and (min-device-width: 768px)
+  // and (max-device-width: 1024px)
+  // and (orientation: portrait)
   // and (-webkit-min-device-pixel-ratio: 1) {
   //   img {
   //     max-width: none;
@@ -268,10 +263,10 @@ header {
   // }
 
   // /* Landscape */
-  // @media only screen 
-  // and (min-device-width: 768px) 
-  // and (max-device-width: 1024px) 
-  // and (orientation: landscape) 
+  // @media only screen
+  // and (min-device-width: 768px)
+  // and (max-device-width: 1024px)
+  // and (orientation: landscape)
   // and (-webkit-min-device-pixel-ratio: 1) {
   //   img {
   //     max-width: none;
@@ -281,10 +276,10 @@ header {
 
   /* ----------- iPad 3, 4 and Pro 9.7" ----------- */
   /* Portrait */
-  @media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (orientation: portrait) 
+  @media only screen
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px)
+  and (orientation: portrait)
   and (-webkit-min-device-pixel-ratio: 2) {
     img {
       max-width: none;
@@ -293,10 +288,10 @@ header {
   }
 
   /* Landscape */
-  @media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (orientation: landscape) 
+  @media only screen
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px)
+  and (orientation: landscape)
   and (-webkit-min-device-pixel-ratio: 2) {
 
   }
@@ -434,7 +429,7 @@ figure {
   text-align: center;
   margin: 20px auto;
   @include screen(medium) {
-    margin: 50px auto;
+    margin: 0;
   }
   img {
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
@@ -509,7 +504,7 @@ figure {
   margin-left: -20px;
   margin-top: -20px;
   background-color: #eed47d;
-  border-radius: 100%;  
+  border-radius: 100%;
   -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
   animation: sk-scaleout 1.0s infinite ease-in-out;
 
@@ -527,7 +522,7 @@ figure {
 }
 
 @keyframes sk-scaleout {
-  0% { 
+  0% {
     -webkit-transform: scale(0);
     transform: scale(0);
   } 100% {
@@ -537,3 +532,19 @@ figure {
   }
 }
 
+.result {
+  @include screen(medium) {
+    margin-left: 50%;
+    margin-top: 70px;
+    max-width: 50%;
+    padding: 0 30px;
+    figure {
+      position: absolute;
+      left: 120px;
+      top: 0;
+    }
+    h2 {
+      padding-top: 40px;
+    }
+  }
+}
