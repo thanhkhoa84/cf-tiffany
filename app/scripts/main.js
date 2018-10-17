@@ -1,14 +1,19 @@
 $(document).ready(function() {
   var canvas = document.createElement('canvas')
   var ctx = canvas.getContext('2d');
-  var ava = new Image(165, 165);
+  var ava = new Image(260, 260);
   ava.crossOrigin='anonymous';
   var base64;
   var resultImg = document.getElementById('result-image');
+  var fbImg = document.getElementById('fb-image');
   if(resultImg) {
     var initImageSrc = resultImg.src;
   }
+  if(fbImg) {
+    var fbPlaceholderSrc = fbImg.src;
+  }
   var placeholder = new Image();
+  var fbPlaceholder = new Image();
   var teams = [
     'CÁ TÍNH', 'SÀNH ĐIỆU', 'SANG CHẢNH', 'GỢI CẢM'
   ]
@@ -20,6 +25,7 @@ $(document).ready(function() {
     team: 0,
     scent: 0,
     name: '',
+    fullName: '',
     quote: '',
     photo: ''
   };
@@ -189,22 +195,30 @@ $(document).ready(function() {
     placeholder.src = initImageSrc;
     var teamName = teams[fd.team - 1];
     var scentName = scents[fd.scent - 1];
+    fd.fullName = fullName;
+    $('#result-name').text(response.first_name)
+
+    var fbCanvas = document.createElement('canvas');
+    var ctx2 = fbCanvas.getContext('2d')
+
+    fbPlaceholder.src = fbPlaceholderSrc;
+
+    fbPlaceholder.onload = function() {
+      // generate share fb photo
+      fbCanvas.width = 1200;
+      fbCanvas.height = 630;
+      ctx2.drawImage(fbPlaceholder, 0, 0)
+      ctx2.font = '500 35px \'CormorantGaramond-Medium\'';
+      ctx2.textAlign='center';
+      ctx2.fillText(fullName.toUpperCase(), 303, 280);
+      ctx2.font = '500 32px \'CormorantGaramond-Medium\'';
+      ctx2.textAlign='end';
+      ctx2.fillText(teams[fd.team - 1], fbCanvas.width/2 + 148, fbCanvas.height - 87);
+      ctx2.textAlign='center';
+      ctx2.fillText(scents[fd.scent - 1], fbCanvas.width/2 + 117, fbCanvas.height - 45);
+    }
 
     placeholder.onload = function() {
-      // ctx.fillText(fullName.toUpperCase(), canvas.width/2, 90);
-
-
-      // generate share fb photo
-      // ctx.font = '500 35px \'CormorantGaramond-Medium\'';
-      // ctx.fillText(fullName.toUpperCase(), 303, 290);
-
-      // ctx.font = '500 21px \'CormorantGaramond-Medium\'';
-      // ctx.textAlign='end';
-      // ctx.fillText(teams[fd.team - 1], canvas.width - 200, canvas.height - 229);
-      // ctx.textAlign='start';
-      // ctx.fillText(scents[fd.scent - 1], canvas.width/2 - 40, canvas.height - 202);
-
-
       // generate result phoyo
       canvas.width = 388 ;
       canvas.height = 388;
@@ -225,6 +239,11 @@ $(document).ready(function() {
         base64 = canvas.toDataURL();
         resultImg.src = base64;
         fd.photo = base64;
+
+
+        ctx2.drawImage(ava, 0, 0, 260, 260, 166, 315, 260, 260);
+        fbImg.src = fbCanvas.toDataURL();
+        fd.fbSharePhoto = fbCanvas.toDataURL();
         $('#loader').fadeOut();
         goToScreen(3);
         $('.flower').hide();
