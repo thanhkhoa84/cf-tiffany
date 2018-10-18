@@ -127,8 +127,8 @@ $(document).ready(function() {
   }
 
   function setResultText() {
-    fd.quote = quotes[fd.team-1].items[fd.scent].content;
-    fd.name = quotes[fd.team-1].items[fd.scent].name;
+    fd.quote = quotes[fd.team].items[fd.scent].content;
+    fd.name = quotes[fd.team].items[fd.scent].scent;
     $('#result-text').text(fd.quote);
     $('#result-name').text(fd.name)
     sendDataToServer(fd);
@@ -192,7 +192,7 @@ $(document).ready(function() {
 
   function setupCanvas(response) {
     var fullName = response.first_name + ' ' + response.last_name;
-    placeholder.src = initImageSrc;
+    placeholder.src = initImageSrc.replace('1', fd.scent);
     var teamName = teams[fd.team - 1];
     var scentName = scents[fd.scent - 1];
     fd.fullName = fullName;
@@ -201,7 +201,7 @@ $(document).ready(function() {
     var fbCanvas = document.createElement('canvas');
     var ctx2 = fbCanvas.getContext('2d')
 
-    fbPlaceholder.src = fbPlaceholderSrc;
+    fbPlaceholder.src = fbPlaceholderSrc.replace('1', fd.scent);
 
     fbPlaceholder.onload = function() {
       // generate share fb photo
@@ -212,30 +212,30 @@ $(document).ready(function() {
       ctx2.textAlign='center';
       ctx2.fillText(fullName.toUpperCase(), 303, 280);
       ctx2.font = '500 32px \'CormorantGaramond-Medium\'';
-      ctx2.textAlign='end';
-      ctx2.fillText(teams[fd.team - 1], fbCanvas.width/2 + 148, fbCanvas.height - 87);
       ctx2.textAlign='center';
-      ctx2.fillText(scents[fd.scent - 1], fbCanvas.width/2 + 117, fbCanvas.height - 45);
+      ctx2.fillText(teams[fd.team - 1], fbCanvas.width/2 + 250, 138);
+      ctx2.textAlign='center';
+      ctx2.fillText(scents[fd.scent - 1], fbCanvas.width/2 + 250, 208);
     }
 
     placeholder.onload = function() {
-      // generate result phoyo
+      // generate result photo
       canvas.width = 388 ;
       canvas.height = 388;
       ctx.drawImage(placeholder, 0, 0)
       ctx.font = '500 22px \'CormorantGaramond-Medium\'';
-      ctx.textAlign = 'start';
-      ctx.fillText(fullName.toUpperCase(), 80, 50);
+      ctx.textAlign = 'center';
+      ctx.fillText(fullName.toUpperCase(), canvas.width/2, 88);
 
-      ctx.textAlign = 'end';
+      ctx.textAlign = 'center';
       ctx.font = '500 13px \'CormorantGaramond-Medium\'';
-      ctx.fillText(teamName, canvas.width/2 + 37, 267);
-      ctx.textAlign = 'start';
-      ctx.fillText(scentName, canvas.width/2 - 31, 285);
+      ctx.fillText(teamName, 96, 285);
+      ctx.textAlign = 'center';
+      ctx.fillText(scentName, 96, 320);
 
       ava.src = response.picture.data.url;
       ava.onload = function() {
-        ctx.drawImage(ava, 0, 0, 260, 260, 45, 65, 120, 120);
+        ctx.drawImage(ava, 0, 0, 260, 260, 42, 120, 115, 115);
         base64 = canvas.toDataURL('image/jpeg', 1.0);
         resultImg.src = base64;
         fd.photo = base64;

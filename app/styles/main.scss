@@ -141,7 +141,8 @@ main {
 .max-width-55 {
   @include screen(medium) {
     max-width: 55%;
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
@@ -237,6 +238,7 @@ a {
     vertical-align: top;
     max-width: calc(50% - 30px);
     @include screen(medium) {
+      margin: 0 20px 20px;
       max-width: 25%;
     }
     img {
@@ -253,7 +255,7 @@ a {
       display: block;
       font-size: 13px;
       @include screen(medium) {
-        font-size: 12px;
+        font-size: 18px;
       }
     }
     a {
