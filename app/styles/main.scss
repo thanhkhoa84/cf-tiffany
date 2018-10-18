@@ -172,16 +172,17 @@ header {
 }
 
 .blackbar {
-  background: url(../images/overlay.png) bottom center repeat-x;
+  background: url(../images/overlay.png) top center repeat-x;
+  background-size: auto 100%;
   content: '';
   display: block;
-  height: 150px;
+  height: 80px;
   position: fixed;
   left: 0;
   right: 0;
   bottom: 0;
   @include screen(large) {
-    height: 250px;
+    height: 150px;
   }
 }
 
@@ -234,11 +235,11 @@ a {
   }
   li {
     display: inline-block;
-    margin: 0 10px 20px;
+    margin: 0 10px;
     vertical-align: top;
     max-width: calc(50% - 30px);
     @include screen(medium) {
-      margin: 0 20px 20px;
+      margin: 0 20px;
       max-width: 25%;
     }
     img {
