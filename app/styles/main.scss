@@ -487,13 +487,46 @@ figure {
 }
 
 .tc-content {
-  max-height: 50vh;
+  max-height: calc(100vh - 280px);
   overflow: auto;
-  padding: 0 20px;
+  // padding: 0 20px;
+  @include screen(medium) {
+    max-height: calc(100vh - 400px);
+  }
 }
 
 
 #btnTeam {
   min-width: 100px;
   padding: 0 40px;
+}
+
+
+ol, ul {
+  margin: 0;
+  padding: 0;
+  line-height: 1.25;
+}
+
+ol {
+  & > li {
+    & + li {
+      margin-top: 1em;
+    }
+  }
+}
+
+ul {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 1em 0;
+  width: 100%;
+}
+
+td {
+  border: 1px solid currentColor;
+  padding: 7px;
 }
