@@ -30,7 +30,7 @@ $(document).ready(function() {
     photo: ''
   };
   var quotes;
-  $.getJSON( 'https://ct2018.asiadigitalhub.com/api/ct/matrix', function( data ) {
+  $.getJSON( 'https://na0019n7azcbjfp.devcloud.acquia-sites.com/api/ct/matrix', function( data ) {
     quotes = data;
   });
 
@@ -127,8 +127,8 @@ $(document).ready(function() {
   }
 
   function setResultText() {
-    fd.quote = quotes[fd.team].items[fd.scent].content;
-    fd.name = quotes[fd.team].items[fd.scent].name;
+    fd.quote = quotes[fd.team-1].items[fd.scent].content;
+    fd.name = quotes[fd.team-1].items[fd.scent].name;
     $('#result-text').text(fd.quote);
     $('#result-name').text(fd.name)
     sendDataToServer(fd);
@@ -236,14 +236,14 @@ $(document).ready(function() {
       ava.src = response.picture.data.url;
       ava.onload = function() {
         ctx.drawImage(ava, 0, 0, 260, 260, 45, 65, 120, 120);
-        base64 = canvas.toDataURL();
+        base64 = canvas.toDataURL('image/jpeg', 1.0);
         resultImg.src = base64;
         fd.photo = base64;
 
 
         ctx2.drawImage(ava, 0, 0, 260, 260, 166, 315, 260, 260);
-        fbImg.src = fbCanvas.toDataURL();
-        fd.fbSharePhoto = fbCanvas.toDataURL();
+        fbImg.src = fbCanvas.toDataURL('image/jpeg', 1.0);
+        fd.fbSharePhoto = fbCanvas.toDataURL('image/jpeg', 1.0);
         $('#loader').fadeOut();
         goToScreen(3);
         $('.flower').hide();
