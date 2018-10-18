@@ -192,7 +192,7 @@ $(document).ready(function() {
 
   function setupCanvas(response) {
     var fullName = response.first_name + ' ' + response.last_name;
-    placeholder.src = initImageSrcreplace('-1.jpg', '-'+fd.scent)+'jpg';
+    placeholder.src = initImageSrc.replace('-1.jpg', '-'+fd.scent)+'jpg';
     var teamName = teams[fd.team - 1];
     var scentName = scents[fd.scent - 1];
     fd.fullName = fullName;
