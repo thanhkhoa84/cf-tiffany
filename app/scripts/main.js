@@ -192,7 +192,7 @@ $(document).ready(function() {
 
   function setupCanvas(response) {
     var fullName = response.first_name + ' ' + response.last_name;
-    placeholder.src = initImageSrc.replace('1', fd.scent);
+    placeholder.src = initImageSrcreplace('-1.jpg', '-'+fd.scent)+'jpg';
     var teamName = teams[fd.team - 1];
     var scentName = scents[fd.scent - 1];
     fd.fullName = fullName;
@@ -201,7 +201,7 @@ $(document).ready(function() {
     var fbCanvas = document.createElement('canvas');
     var ctx2 = fbCanvas.getContext('2d')
 
-    fbPlaceholder.src = fbPlaceholderSrc.replace('1', fd.scent);
+    fbPlaceholder.src = fbPlaceholderSrc.replace('-1.jpg', '-'+fd.scent)+'jpg';
 
     fbPlaceholder.onload = function() {
       // generate share fb photo
