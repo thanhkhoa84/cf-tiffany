@@ -59,6 +59,7 @@ body {
 
 main {
   margin-top: 20px;
+  padding-bottom: 20px;
 }
 
 .container {
@@ -202,6 +203,7 @@ header {
 
 h1 {
   font-size: 19px;
+  font-weight: normal;
   text-transform: uppercase;
   @include screen(small) {
     font-size: 38px;
@@ -211,9 +213,14 @@ h1 {
 h2 {
   font-size: 15px;
   text-transform: uppercase;
+  font-weight: normal;
   @include screen(small) {
     font-size: 24px;
   }
+}
+
+a {
+  color: currentColor;
 }
 
 .options-list {
@@ -244,7 +251,7 @@ h2 {
     }
     span  {
       display: block;
-      font-size: 10px;
+      font-size: 13px;
       @include screen(medium) {
         font-size: 12px;
       }
@@ -458,7 +465,7 @@ figure {
   img {
     display: block;
     margin: 0 auto;
-    max-width: 80%;
+    max-width: 72%;
     @include screen(small) {
       max-width: 55%;
     }
@@ -483,4 +490,10 @@ figure {
   max-height: 50vh;
   overflow: auto;
   padding: 0 20px;
+}
+
+
+#btnTeam {
+  min-width: 100px;
+  padding: 0 40px;
 }
