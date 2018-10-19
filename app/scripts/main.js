@@ -164,7 +164,7 @@ $(document).ready(function() {
     var fbCanvas = document.createElement('canvas');
     var ctx2 = fbCanvas.getContext('2d')
 
-    fbPlaceholder.src = fbPlaceholderSrc.replace('-1.jpg', '-'+fd.scent)+'.jpg';
+    fbPlaceholder.src = fbPlaceholderSrc.replace('-1.jpg', '-'+fd.team+fd.scent)+'.jpg';
 
     fbPlaceholder.onload = function() {
       // generate share fb photo
