@@ -38,7 +38,7 @@
       <div class="blackbar"></div>
       <div class="container text-center">
         <div class="step step-1">
-          <h2>CHỌN DẤU ẤN THỜI TRANG PHÙ HỢP VỚI BẠN NHẤT</h2>
+          <h2>CHỌN DẤU ẤN THỜI TRANG PHÙ HỢP VỚI BẠN</h2>
           <ul class="options-list" id="team">
             <li>
               <a href="javascript:void(0);" data-team="1"><img src="./images/team-1.png" alt=""></a>
@@ -60,7 +60,7 @@
             <p><a href="javascript:void(0);" class="btn disabled"  id="btnTeam"><span>KẾ TIẾP</span></a></p>
         </div>
         <div class="step step-2">
-          <h2>CHỌN HƯƠNG NƯỚC HOA TƯƠI MỚI NÀO BẠN ĐANG MUỐN THỬ</h2>
+          <h2>CHỌN HƯƠNG NƯỚC HOA TƯƠI MỚI BẠN ĐANG MUỐN THỬ</h2>
           <ul class="options-list" id="scent">
             <li>
               <a href="javascript:void(0);" data-scent="1"><img src="./images/scent-1.png" alt=""></a>
@@ -91,7 +91,7 @@
         <div class="step step-3">
           <div class="result">
             <h2>XIN CHÀO, <span id="result-name">LILLIE</span></h2>
-            <p class="result-text">Thêm chút kiêu sa nhưng không mất đi nét riêng cá tính, hãy thử  kết hợp trang phục wool silk được ướp hương nước hoa Comfort Rose bạn nhé!</p>
+            <p id="result-text">Thêm chút kiêu sa nhưng không mất đi nét riêng cá tính, hãy thử  kết hợp trang phục wool silk được ướp hương nước hoa Comfort Rose bạn nhé!</p>
             <figure>
               <img id="result-image" src="./images/placeholder-1.jpg" alt="">
               <img id="fb-image" src="./images/placeholder-fb-1.jpg" alt="">
@@ -99,7 +99,7 @@
             <div class="result-cta">
                 <p>Khoe ngay dấu ấn thời trang tươi mới nhà thiết kế Comfort dành riêng cho bạn với bạn bè để nhận được phần quà bộ sưu tập Comfort hương nước hoa thiên nhiên 4 mùi hương & nước hoa Lillie 5ml thời đẳng cấp nhé!</p>
               <p class="buttons">
-                <a href="javascript:void(0);" class="btn btn-short" id="fbShare"><span>CHIA SẺ</span></a>
+                <a href="javascript:void(0);" class="btn btn-short" id="fbShare" data-url="/" data-action="https://na0019n7azcbjfp.devcloud.acquia-sites.com/api/ct/user"><span>CHIA SẺ</span></a>
                 <a href="javascript:void(0);" class="btn btn-short"><span>TẠO MỚI</span></a>
               </p>
             </div>
@@ -140,7 +140,7 @@
           appId: '271192156856247',
           cookie: true,
           xfbml: true,
-          version: 'v2.5'
+          version: 'v3.1'
         });
         FB.AppEvents.logPageView();
       };
