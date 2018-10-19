@@ -38,7 +38,7 @@
       <div class="blackbar"></div>
       <div class="container text-center">
         <div class="step step-1">
-          <h2>CHỌN DẤU ẤN THỜI TRANG PHÙ HỢP VỚI BẠN NHẤT</h2>
+          <h2>CHỌN DẤU ẤN THỜI TRANG PHÙ HỢP VỚI BẠN</h2>
           <ul class="options-list" id="team">
             <li>
               <a href="javascript:void(0);" data-team="1"><img src="./images/team-1.png" alt=""></a>
@@ -60,7 +60,7 @@
             <p><a href="javascript:void(0);" class="btn disabled"  id="btnTeam"><span>KẾ TIẾP</span></a></p>
         </div>
         <div class="step step-2">
-          <h2>CHỌN HƯƠNG NƯỚC HOA TƯƠI MỚI NÀO BẠN ĐANG MUỐN THỬ</h2>
+          <h2>CHỌN HƯƠNG NƯỚC HOA TƯƠI MỚI BẠN ĐANG MUỐN THỬ</h2>
           <ul class="options-list" id="scent">
             <li>
               <a href="javascript:void(0);" data-scent="1"><img src="./images/scent-1.png" alt=""></a>
@@ -99,7 +99,7 @@
             <div class="result-cta">
               <p>KHOE NGAY DẤU ẤN THỜI TRANG TƯƠI MỚI NHÀ THIẾT KẾ COMFORT DÀNH RIÊNG CHO BẠN VỚI BẠN BÈ ĐỂ NHẬN ĐƯỢC PHẦN QUÀ BỘ SƯU TẬP COMFORT HƯƠNG NƯỚC HOA THIÊN NHIÊN 4 MÙI HƯƠNG & NƯỚC HOA LILLIE 5ML THỜI ĐẲNG CẤP NHÉ!</p>
               <p class="buttons">
-                <a href="javascript:void(0);" class="btn btn-short" id="fbShare"><span>CHIA SẺ</span></a>
+                <a href="javascript:void(0);" class="btn btn-short" id="fbShare" data-url="/" data-action="https://na0019n7azcbjfp.devcloud.acquia-sites.com/api/ct/user"><span>CHIA SẺ</span></a>
                 <a href="javascript:void(0);" class="btn btn-short"><span>TẠO MỚI</span></a>
               </p>
             </div>
@@ -140,7 +140,7 @@
           appId: '271192156856247',
           cookie: true,
           xfbml: true,
-          version: 'v2.5'
+          version: 'v3.1'
         });
         FB.AppEvents.logPageView();
       };
@@ -149,7 +149,8 @@
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) { return; }
         js = d.createElement(s); js.id = id;
-        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        // js.src = "https://connect.facebook.net/en_US/sdk.js";
+        js.src = "https://connect.facebook.net/en_US/sdk/debug.js";
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
     </script>

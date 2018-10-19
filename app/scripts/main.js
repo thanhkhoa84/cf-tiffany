@@ -27,7 +27,9 @@ $(document).ready(function() {
     name: '',
     fullName: '',
     quote: '',
-    photo: ''
+    photo: '',
+    url: '',
+    shareOptions: {}
   };
   var quotes;
   $.getJSON( 'https://na0019n7azcbjfp.devcloud.acquia-sites.com/api/ct/matrix', function( data ) {
@@ -48,6 +50,7 @@ $(document).ready(function() {
     $(this).addClass('active');
     $('#seeResult').removeClass('disabled');
     fd.scent = $(this).data('scent');
+    fd.quote = quotes[fd.team].items[fd.scent].content;
   })
 
   $('#btnTeam').on('click', function(e) {
@@ -62,11 +65,10 @@ $(document).ready(function() {
     if($(this).hasClass('disabled')) {
       $('#popup-scent').fadeIn();
     } else {
-      setResultText();
       FB.getLoginStatus(function (response) {
         if (response.status === 'connected') {
           $('#loader').show();
-          getFbUserData();
+          getFbUserData(response);
         } else {
           $('#popup-login').show();
         }
@@ -80,33 +82,25 @@ $(document).ready(function() {
   });
 
   $('#fbLogin').on('click', function(e) {
-    e.preventDefault();
     $('#loader').show();
     $('#popup-login').hide();
     FB.getLoginStatus(function (response) {
       if (response.status === 'connected') {
-        getFbUserData();
-      } else if (response.status === 'authorization_expired') {
-        FB.login(statusChangeCallback, {
-          scope: 'email,public_profile',
-          return_scopes: true
-        });
-        $('#loader').hide();
-      } else if (response.status === 'not_authorized') {
-        FB.login(statusChangeCallback, {
-          scope: 'email,public_profile',
-          return_scopes: true
-        });
-        $('#loader').hide();
+        return;
       } else {
         FB.login(statusChangeCallback, {
           scope: 'email,public_profile',
           return_scopes: true
         });
-        $('#loader').hide();
       }
     });
   });
+
+
+  $('#fbShare').on('click', function(e) {
+    e.preventDefault();
+    shareFb()
+  })
 
   $('.close').on('click', function(e) {
     e.preventDefault();
@@ -126,16 +120,14 @@ $(document).ready(function() {
     $('.step-'+screen).show();
   }
 
-  function setResultText() {
-    fd.quote = quotes[fd.team].items[fd.scent].content;
-    fd.name = quotes[fd.team].items[fd.scent].scent;
-    $('#result-text').text(fd.quote);
+  function setResultText(fd) {
+    $('.result-text').text(fd.quote);
     $('#result-name').text(fd.name)
     sendDataToServer(fd);
   }
 
   function sendDataToServer(fd) {
-    // $.ajax
+
   }
 
   function reset() {
@@ -156,14 +148,23 @@ $(document).ready(function() {
 
   function shareFb() {
     FB.ui({
-      method: 'share_open_graph',
-      action_type: 'og.likes',
-      action_properties: JSON.stringify({
-        object: 'https://developers.facebook.com/docs/',
-      })
+      method: 'feed',
+      mobile_iframe: true,
+      name: 'Comfort',
+      hashtag: '#ComfortHươngNướcHoaThiênNhiên',
+      href: fd.shareOptions.share_url,
+      link: fd.shareOptions.share_url
     }, function (response) {
-      console.log(response)
-    });
+      let error_code = response['error_code'] || false;
+      if (error_code) {
+        console.error(response);
+      }
+      else {
+        window.location.href = $('#fbShare').data('url');
+      }
+
+    }
+  );
   }
 
   function statusChangeCallback(response) {
@@ -182,7 +183,7 @@ $(document).ready(function() {
   function getFbUserData() {
     FB.api('/me', {
         locale: 'en_US',
-        fields: 'id,first_name,last_name,email,link,gender,locale,picture.width(260).height(260)'
+        fields: 'id,name,first_name,last_name,middle_name,email,link,gender,locale,picture.width(260).height(260)'
       },
       function (response) {
         setupCanvas(response)
@@ -236,39 +237,38 @@ $(document).ready(function() {
       ava.src = response.picture.data.url;
       ava.onload = function() {
         ctx.drawImage(ava, 0, 0, 260, 260, 42, 120, 115, 115);
-        base64 = canvas.toDataURL('image/jpeg', 1.0);
-        resultImg.src = base64;
-        fd.photo = base64;
-
-
         ctx2.drawImage(ava, 0, 0, 260, 260, 166, 315, 260, 260);
-        fbImg.src = fbCanvas.toDataURL('image/jpeg', 1.0);
-        fd.fbSharePhoto = fbCanvas.toDataURL('image/jpeg', 1.0);
-        $('#loader').fadeOut();
-        goToScreen(3);
-        $('.flower').hide();
+
+        // $.ajax
+        var dataToSend = {
+          id: response.id || '',
+          base64: canvas.toDataURL('image/jpeg', 1.0),
+          share_base64: fbCanvas.toDataURL('image/jpeg', 1.0),
+          email: response.email,
+          full_name: fullName || '',
+          first_name: response.first_name || '',
+          middle_name: response.middle_name || 'aaa ',
+          last_name: response.last_name || '',
+          group: fd.team || 1,
+          option: fd.scent || 1
+        }
+
+        $.ajax({
+          url: $('#fbShare').data('action'),
+          data: JSON.stringify(dataToSend),
+          type: 'POST',
+          success: function(res) {
+            fd.shareOptions = res;
+            $('#loader').fadeOut();
+            resultImg.src = res.image;
+            fbImg.src = res.fb_image;
+            goToScreen(3);
+          },
+          error: function (xhr, status, error) {
+            $('#loader').fadeOut();
+          }
+        })
       }
     }
   }
-
-  function postCanvasToURL() {
-    // Convert canvas image to Base64
-    var img = snap.toDataURL();
-    // Convert Base64 image to binary
-    var file = dataURItoBlob(img);
-  }
-
-  function dataURItoBlob(dataURI) {
-    var byteString = atob(dataURI.split(',')[1]);
-    var ab = new ArrayBuffer(byteString.length);
-    var ia = new Uint8Array(ab);
-    for (var i = 0; i < byteString.length; i++) {
-      ia[i] = byteString.charCodeAt(i);
-    }
-    return new Blob([ab], {
-      type: 'image/png'
-    });
-  }
-
-
-})
+});

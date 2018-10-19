@@ -235,7 +235,7 @@ a {
   }
   li {
     display: inline-block;
-    margin: 0 10px;
+    margin: 0 10px 20px;
     vertical-align: top;
     max-width: calc(50% - 30px);
     @include screen(medium) {
@@ -285,7 +285,7 @@ a {
 		transform: translatey(0px);
 	}
 	50% {
-		transform: translatey(-20px);
+		transform: translatey(-12px);
 	}
 	100% {
 		transform: translatey(0px);
