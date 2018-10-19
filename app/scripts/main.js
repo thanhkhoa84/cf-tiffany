@@ -230,9 +230,9 @@ $(document).ready(function() {
 
       ctx.textAlign = 'center';
       ctx.font = '500 13px \'CormorantGaramond-Medium\'';
-      ctx.fillText(teamName, 96, 285);
+      ctx.fillText(teamName, 94, 285);
       ctx.textAlign = 'center';
-      ctx.fillText(scentName, 96, 320);
+      ctx.fillText(scentName, 94, 316);
 
       ava.src = response.picture.data.url;
       ava.onload = function() {
