@@ -21,8 +21,6 @@ $(document).ready(function() {
     'QUÝ PHÁI', 'THANH LỊCH', 'THANH THOÁT', 'KIÊU SA'
   ]
 
-
-    console.log(window.location)
   var fd = {
     team: 0,
     scent: 0,
@@ -164,7 +162,6 @@ $(document).ready(function() {
       else {
         window.location.href = $('#fbShare').data('url');
       }
-
     }
   );
   }
@@ -195,7 +192,7 @@ $(document).ready(function() {
 
   function setupCanvas(response) {
     var fullName = response.first_name + ' ' + response.last_name;
-    placeholder.src = initImageSrc.replace('-1.jpg', '-'+fd.scent+fd.team)+'.jpg';
+    placeholder.src = initImageSrc.replace('-1.jpg', '-'+fd.team+fd.scent)+'.jpg';
     var teamName = teams[fd.team - 1];
     var scentName = scents[fd.scent - 1];
     fd.fullName = fullName;
@@ -264,6 +261,7 @@ $(document).ready(function() {
             $('#loader').fadeOut();
             resultImg.src = res.image;
             fbImg.src = res.fb_image;
+            setResultText();
             goToScreen(3);
           },
           error: function (xhr, status, error) {
