@@ -34,6 +34,7 @@ $(document).ready(function() {
   var quotes;
   $.getJSON( 'https://na0019n7azcbjfp.devcloud.acquia-sites.com/api/ct/matrix', function( data ) {
     quotes = data;
+    console.log(quotes)
   });
 
 
@@ -51,6 +52,8 @@ $(document).ready(function() {
     $('#seeResult').removeClass('disabled');
     fd.scent = $(this).data('scent');
     fd.quote = quotes[fd.team].items[fd.scent].content;
+    $('#result-text').text(fd.quote);
+    $('#result-name').text(fd.name);
   })
 
   $('#btnTeam').on('click', function(e) {
@@ -76,11 +79,6 @@ $(document).ready(function() {
     }
   });
 
-  $('#reset').on('click', function(e) {
-    e.preventDefault();
-    reset()
-  });
-
   $('#fbLogin').on('click', function(e) {
     $('#loader').show();
     $('#popup-login').hide();
@@ -96,7 +94,6 @@ $(document).ready(function() {
     });
   });
 
-
   $('#fbShare').on('click', function(e) {
     e.preventDefault();
     shareFb()
@@ -107,43 +104,9 @@ $(document).ready(function() {
     $('.popup').hide();
   })
 
-  function showPopUp() {
-    $('#popup-login').fadeIn();
-  }
-
-  function hidePopup() {
-    $('#popup-login').fadeOut();
-  }
-
   function goToScreen(screen) {
     $('.step').hide();
     $('.step-'+screen).show();
-  }
-
-  function setResultText(fd) {
-    $('.result-text').text(fd.quote);
-    $('#result-name').text(fd.name)
-    sendDataToServer(fd);
-  }
-
-  function sendDataToServer(fd) {
-
-  }
-
-  function reset() {
-    fd = {
-      team: 0,
-      scent: 0,
-      name: '',
-      quote: '',
-      photo: ''
-    };
-    $('#team li a').removeClass('active');
-    $('#scent li a').removeClass('active');
-    $('#btnTeam, #seeResult').addClass('disabled');
-    $('#result-text').text('');
-    $('#result-image').attr('src', initImageSrc);
-    goToScreen(1);
   }
 
   function shareFb() {
@@ -261,7 +224,6 @@ $(document).ready(function() {
             $('#loader').fadeOut();
             resultImg.src = res.image;
             fbImg.src = res.fb_image;
-            setResultText();
             goToScreen(3);
           },
           error: function (xhr, status, error) {

@@ -91,7 +91,7 @@
         <div class="step step-3">
           <div class="result">
             <h2>XIN CHÀO, <span id="result-name">LILLIE</span></h2>
-            <p class="result-text">Thêm chút kiêu sa nhưng không mất đi nét riêng cá tính, hãy thử  kết hợp trang phục wool silk được ướp hương nước hoa Comfort Rose bạn nhé!</p>
+            <p id="result-text">Thêm chút kiêu sa nhưng không mất đi nét riêng cá tính, hãy thử  kết hợp trang phục wool silk được ướp hương nước hoa Comfort Rose bạn nhé!</p>
             <figure>
               <img id="result-image" src="./images/placeholder-1.jpg" alt="">
               <img id="fb-image" src="./images/placeholder-fb-1.jpg" alt="">
@@ -149,8 +149,7 @@
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) { return; }
         js = d.createElement(s); js.id = id;
-        // js.src = "https://connect.facebook.net/en_US/sdk.js";
-        js.src = "https://connect.facebook.net/en_US/sdk/debug.js";
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
     </script>
