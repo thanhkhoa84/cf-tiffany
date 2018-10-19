@@ -21,6 +21,8 @@ $(document).ready(function() {
     'QUÝ PHÁI', 'THANH LỊCH', 'THANH THOÁT', 'KIÊU SA'
   ]
 
+
+    console.log(window.location)
   var fd = {
     team: 0,
     scent: 0,
@@ -193,7 +195,7 @@ $(document).ready(function() {
 
   function setupCanvas(response) {
     var fullName = response.first_name + ' ' + response.last_name;
-    placeholder.src = initImageSrc.replace('-1.jpg', '-'+fd.scent)+'.jpg';
+    placeholder.src = initImageSrc.replace('-1.jpg', '-'+fd.scent+fd.team)+'.jpg';
     var teamName = teams[fd.team - 1];
     var scentName = scents[fd.scent - 1];
     fd.fullName = fullName;
